@@ -6,8 +6,14 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private ObjectPool _objectPool;
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private GameObject _crossHair;
     bool _isShooting;
     float _fireRate = 0.3f;
+
+    private void Awake()
+    {
+        Cursor.visible = false;    
+    }
 
     private void Update()
     {
@@ -15,6 +21,9 @@ public class PlayerShoot : MonoBehaviour
         {
             StartCoroutine(Shooting());
         }
+
+        Vector2 mouseCursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _crossHair.transform.position = mouseCursorPos;
     }
 
     IEnumerator Shooting()
