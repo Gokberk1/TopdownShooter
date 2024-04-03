@@ -12,7 +12,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;    
+        //Cursor.visible = false;    
     }
 
     private void Update()
