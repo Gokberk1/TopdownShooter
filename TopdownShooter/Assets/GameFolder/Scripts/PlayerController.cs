@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D _rb;
     [SerializeField] float _movementSpeed;
+    [SerializeField] float _health;
     
 
     private void Awake()
@@ -31,4 +32,9 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = input * _movementSpeed;
     }
 
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+        Debug.Log(_health);
+    }
 }
