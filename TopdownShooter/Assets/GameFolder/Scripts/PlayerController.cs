@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     float _currentHealth;
     [SerializeField] float _maxHealth = 100f;
     [SerializeField] FloatingHealthBar _healthBar;
+    [SerializeField] CoinManager _coinManager;
     
 
     private void Awake()
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Pill"))
         {
-            if(_currentHealth <= _maxHealth)
+            if (_currentHealth <= _maxHealth)
             {
                 _currentHealth += 50;
                 _healthBar.UpdateHealthBar(_currentHealth, _maxHealth);
@@ -58,8 +59,12 @@ public class PlayerController : MonoBehaviour
 
                 Destroy(collision.gameObject);
             }
+        }
 
-           
+        if (collision.CompareTag("Coin"))
+        {
+            _coinManager.AddCoin(collision.transform.position, 5);
+            Destroy(collision.gameObject);
         }
     }
 }
